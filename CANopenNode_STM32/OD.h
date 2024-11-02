@@ -15,17 +15,17 @@
         File Version: 1
 
         Created:      23.11.2020 16:00:00
-        Created By:   
-        Modified:     01.11.2024 20:22:40
+        Created By:   01.Nov.2024
+        Modified:     03.11.2024 0:26:05
         Modified By:  
 
     Device Info:
         Vendor Name:  Chromos_A
-        Vendor ID:    0xAFFEFFd
+        Vendor ID:    0xAFFEAFFd
         Product Name: Disco407_Blue
         Product ID:   0x3b
 
-        Description:  
+        Description:  EVboard_Disco_F407_Blue
 *******************************************************************************/
 
 #ifndef OD_H
@@ -45,7 +45,7 @@
 #define OD_CNT_SDO_SRV 1
 #define OD_CNT_SDO_CLI 1
 #define OD_CNT_RPDO 2
-#define OD_CNT_TPDO 2
+#define OD_CNT_TPDO 1
 
 
 /*******************************************************************************
@@ -128,14 +128,6 @@ typedef struct {
         uint8_t SYNCStartValue;
     } x1800_TPDOCommunicationParameter;
     struct {
-        uint8_t highestSub_indexSupported;
-        uint32_t COB_IDUsedByTPDO;
-        uint8_t transmissionType;
-        uint16_t inhibitTime;
-        uint16_t eventTimer;
-        uint8_t SYNCStartValue;
-    } x1801_TPDOCommunicationParameter;
-    struct {
         uint8_t numberOfMappedApplicationObjectsInPDO;
         uint32_t applicationObject1;
         uint32_t applicationObject2;
@@ -146,23 +138,17 @@ typedef struct {
         uint32_t applicationObject7;
         uint32_t applicationObject8;
     } x1A00_TPDOMappingParameter;
-    struct {
-        uint8_t numberOfMappedApplicationObjectsInPDO;
-        uint32_t applicationObject1;
-        uint32_t applicationObject2;
-        uint32_t applicationObject3;
-        uint32_t applicationObject4;
-        uint32_t applicationObject5;
-        uint32_t applicationObject6;
-        uint32_t applicationObject7;
-        uint32_t applicationObject8;
-    } x1A01_TPDOMappingParameter;
     int32_t x6000_disco_Blue_VAR32_6000_TX;
-    uint32_t x6001_disco_Blue_VAR32_6001R;
-    uint32_t x6002_disco_Blue_VAR32_6002R;
+    uint32_t x6001_disco_Blue_VAR32_6001_R;
+    uint32_t x6002_disco_Blue_VAR32_6002_R;
     uint64_t x6003_disco_Blue_VAR64_6003_TX;
     uint64_t x6004_disco_Blue_VAR64_6004_TX;
-    uint32_t x6047_disco_Blue_T;
+    int32_t x600A_disco_Blue_VAR32_600A_TX;
+    uint32_t x600B_disco_Blue_VAR32_600B_R;
+    uint32_t x600C_disco_Blue_VAR32_600C_R;
+    uint64_t x600D_disco_Blue_VAR64_600d_TX;
+    uint64_t x600E_disco_Blue_VAR64_600e_TX;
+    uint32_t x6048_disco_Blue_T;
 } OD_PERSIST_COMM_t;
 
 typedef struct {
@@ -219,15 +205,18 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1600 &OD->list[19]
 #define OD_ENTRY_H1601 &OD->list[20]
 #define OD_ENTRY_H1800 &OD->list[21]
-#define OD_ENTRY_H1801 &OD->list[22]
-#define OD_ENTRY_H1A00 &OD->list[23]
-#define OD_ENTRY_H1A01 &OD->list[24]
-#define OD_ENTRY_H6000 &OD->list[25]
-#define OD_ENTRY_H6001 &OD->list[26]
-#define OD_ENTRY_H6002 &OD->list[27]
-#define OD_ENTRY_H6003 &OD->list[28]
-#define OD_ENTRY_H6004 &OD->list[29]
-#define OD_ENTRY_H6047 &OD->list[30]
+#define OD_ENTRY_H1A00 &OD->list[22]
+#define OD_ENTRY_H6000 &OD->list[23]
+#define OD_ENTRY_H6001 &OD->list[24]
+#define OD_ENTRY_H6002 &OD->list[25]
+#define OD_ENTRY_H6003 &OD->list[26]
+#define OD_ENTRY_H6004 &OD->list[27]
+#define OD_ENTRY_H600A &OD->list[28]
+#define OD_ENTRY_H600B &OD->list[29]
+#define OD_ENTRY_H600C &OD->list[30]
+#define OD_ENTRY_H600D &OD->list[31]
+#define OD_ENTRY_H600E &OD->list[32]
+#define OD_ENTRY_H6048 &OD->list[33]
 
 
 /*******************************************************************************
@@ -255,15 +244,18 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1600_RPDOMappingParameter &OD->list[19]
 #define OD_ENTRY_H1601_RPDOMappingParameter &OD->list[20]
 #define OD_ENTRY_H1800_TPDOCommunicationParameter &OD->list[21]
-#define OD_ENTRY_H1801_TPDOCommunicationParameter &OD->list[22]
-#define OD_ENTRY_H1A00_TPDOMappingParameter &OD->list[23]
-#define OD_ENTRY_H1A01_TPDOMappingParameter &OD->list[24]
-#define OD_ENTRY_H6000_disco_Blue_VAR32_6000_TX &OD->list[25]
-#define OD_ENTRY_H6001_disco_Blue_VAR32_6001R &OD->list[26]
-#define OD_ENTRY_H6002_disco_Blue_VAR32_6002R &OD->list[27]
-#define OD_ENTRY_H6003_disco_Blue_VAR64_6003_TX &OD->list[28]
-#define OD_ENTRY_H6004_disco_Blue_VAR64_6004_TX &OD->list[29]
-#define OD_ENTRY_H6047_disco_Blue_T &OD->list[30]
+#define OD_ENTRY_H1A00_TPDOMappingParameter &OD->list[22]
+#define OD_ENTRY_H6000_disco_Blue_VAR32_6000_TX &OD->list[23]
+#define OD_ENTRY_H6001_disco_Blue_VAR32_6001_R &OD->list[24]
+#define OD_ENTRY_H6002_disco_Blue_VAR32_6002_R &OD->list[25]
+#define OD_ENTRY_H6003_disco_Blue_VAR64_6003_TX &OD->list[26]
+#define OD_ENTRY_H6004_disco_Blue_VAR64_6004_TX &OD->list[27]
+#define OD_ENTRY_H600A_disco_Blue_VAR32_600A_TX &OD->list[28]
+#define OD_ENTRY_H600B_disco_Blue_VAR32_600B_R &OD->list[29]
+#define OD_ENTRY_H600C_disco_Blue_VAR32_600C_R &OD->list[30]
+#define OD_ENTRY_H600D_disco_Blue_VAR64_600d_TX &OD->list[31]
+#define OD_ENTRY_H600E_disco_Blue_VAR64_600e_TX &OD->list[32]
+#define OD_ENTRY_H6048_disco_Blue_T &OD->list[33]
 
 
 /*******************************************************************************
